@@ -2,20 +2,25 @@
 import axios from 'axios'
 import React, { useRef, useState } from 'react'
 import { Jelly } from '@uiball/loaders'
+import { UserAuth } from '@/lib/authContext'
+import { useRouter } from 'next/navigation'
+import { makePosts } from '@/lib/post'
 
 export default function PostForm() {
+    const { token } = UserAuth()
     const [img, setimg] = useState(null)
     const [imgFile, setImgFile] = useState('')
     const imageUpload = useRef(null)
     const [desc, setdesc] = useState('')
     const [submit, setSubmit] = useState(false)
     const [submitStatus, setsubmitStatus] = useState({ color: '', text: '' })
+    const router = useRouter()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setsubmitStatus({ text: 'Image is being uploaded' })
         setSubmit(true)
-        console.log(img, desc)
+        //.log(img, desc)
         const formData = new FormData();
         formData.append('file', imgFile);
         formData.append('upload_preset', 'vruksha');
@@ -27,17 +32,20 @@ export default function PostForm() {
             );
 
             setsubmitStatus({ text: 'waiting for response' })
-            console.log(response.statusText);
+            //.log(response.statusText);
             if (response.statusText === "OK") {
                 setsubmitStatus({ text: 'Image uploaded successfully' })
-                setSubmit(false)
+                const resData = await makePosts({ token: token, img: response.data.url, description: desc })
+                //.log(resData)
+                setsubmitStatus({ text: 'Image analysis started' })
+                router.push(`/post/${resData.post._id}`)
+
             } else {
                 setsubmitStatus({ text: 'Image could not be uploaded' })
-                setSubmit(false)
+                router.push('/home')
             }
-            setsubmitStatus({ text: response.data.url })
         } catch (error) {
-            console.error(error);
+            //.error(error);
         }
     }
     const validateFileType = (e) => {
@@ -62,7 +70,7 @@ export default function PostForm() {
                 <input id='imageUpload' ref={imageUpload} className=' hidden' onChange={(e) => { validateFileType(e) }} type='file'></input>
                 <div className=' my-10 w-11/12 flex-col flex justify-center items-center'>
                     <label className=' w-full py-2'>Description<sup>{' (optional)'}</sup></label>
-                    <textarea value={desc} defaultValue={''} onChange={(e) => setdesc(e.target.value)} rows={20} className='w-full text-black p-3 focus:ring-0 placeholder:text-gray-500' placeholder='i have been facing this issue since last falll. even tho i sprayed metamorphic pesticides on few of the crops...' />
+                    <textarea value={desc} onChange={(e) => setdesc(e.target.value)} rows={20} className='w-full text-black p-3 focus:ring-0 placeholder:text-gray-500' placeholder='i have been facing this issue since last falll. even tho i sprayed metamorphic pesticides on few of the crops...' />
                 </div>
                 {img && <button onClick={(e) => { handleSubmit(e) }} className=' w-11/12 py-12 rounded-lg cursor-pointer bg-green-500 hover:bg-green-300 flex justify-center items-center text-3xl transition-all font-bold'>
                     SEND FOR ANALYSIS
@@ -77,9 +85,9 @@ export default function PostForm() {
                     <p className=' py-12 text-2xl font-medium'>{submitStatus.text}</p>
                 </div>
             </form>
-            {submitStatus.text !== '' && <a href={submitStatus.text} target='_blank' className=' p-8 my-24 rounded-lg cursor-pointer bg-green-500 hover:bg-green-300 flex justify-center items-center text-3xl transition-all font-bold'>
+            {/* {submitStatus.text !== '' && <a href={submitStatus.text} target='_blank' className=' p-8 my-24 rounded-lg cursor-pointer bg-green-500 hover:bg-green-300 flex justify-center items-center text-3xl transition-all font-bold'>
                 ACCESS THE UPLOADED IMAGE
-            </a>}
+            </a>} */}
         </div>
     )
 }

@@ -1,16 +1,36 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AuthChecker from '../components/AuthChecker'
+import PostCard from './components/PostCard'
+import SearchBar from './components/SearchBar'
+import { UserAuth } from '@/lib/authContext'
+import { getPosts } from '@/lib/post'
+import Loading from '../components/Loading'
 
 export const metadata = {
-    title: 'Home - Vrukshaa',
-    description: 'image analysis',
-  }
-export default function page() {
+  title: 'Home - Vrukshaa',
+  description: 'image analysis',
+}
+export default function Page() {
+  const { token } = UserAuth()
+  const [posts, setposts] = useState([])
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getPosts(token)
+      setposts(data)
+    }
+    getData()
+  }, [])
   return (
-    <div className=' flex flex-col justify-center items-center p-24 '>
-        <h1 className=' text-5xl font-bold mb-5'>Home page</h1>
-        <AuthChecker/>
-    </div> 
+    <div className=' flex flex-col justify-center items-center px-16 py-8 gap-8 w-full'>
+      <AuthChecker />
+      <SearchBar />
+      <h1 className=' text-3xl font-bold mb-5'>Explore posts from other farmers!</h1>
+      {posts.length !== 0 ? <div className=' grid grid-cols-3 grid-flow-row-dense gap-5 w-full'>
+        {posts.map(el => (
+          <PostCard key={el._id} el={el} />
+        ))}
+      </div> : <Loading loading={true} />}
+    </div>
   )
 }
