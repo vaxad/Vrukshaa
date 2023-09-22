@@ -24,12 +24,12 @@ export default function Page() {
     getData()
   }, [])
   return (
-    <div className=' flex flex-col justify-center items-center px-16 py-8 gap-8 w-full'>
+    <div className=' flex flex-col justify-center items-center md:px-16 px-6 py-8 gap-8 w-full'>
       <AuthChecker />
       <SearchBar />
-      <h1 className=' text-3xl font-bold mb-5'>Explore articles from experts!</h1>
+      <h1 className=' text-2xl md:text-3xl text-center font-bold mb-5'>Explore articles from experts!</h1>
       <AddBtn />
-      {posts.length !== 0 ? <div className=' grid grid-cols-3 grid-flow-row-dense gap-5 w-full'>
+      {posts.length !== 0 ? <div className=' grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-flow-row-dense gap-5 w-full'>
         {posts?.map(el => (
           <ArticleCard key={el._id} el={el} />
         ))}

@@ -9,7 +9,7 @@ export const metadata = {
 export default function Page() {
 
   return (
-    <div className=' px-24 py-12 '>
+    <div className=' px-6 md:px-24 py-12 '>
       <AuthChecker />
       <div className=' flex flex-col justify-center items-center min-w-full'>
         <h1 className=' text-5xl font-bold'></h1>

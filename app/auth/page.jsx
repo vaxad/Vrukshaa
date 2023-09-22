@@ -33,11 +33,11 @@ export default function Page() {
   }, [user]);
 
   return (
-    <main className=' flex flex-col justify-center items-center p-24'>
-      <h1 className=" text-5xl text-center font-bold pt-24 pb-10">Sign in</h1>
-      <div className=' flex gap-12 pb-10'>
-        <button onClick={() => { handleGoogle() }} className=" bg-green-500 rounded-lg p-5 text-3xl font-bold">Google</button>
-        <Link href={'/auth/otp'} className=" bg-green-500 rounded-lg p-5 text-3xl font-bold">OTP</Link>
+    <main className=' flex flex-col justify-center items-center px-6 md:px-12 lg:px-24 py-24'>
+      <h1 className=" text-2xl md:text-5xl text-center font-bold pt-24 pb-10">Sign in</h1>
+      <div className=' flex flex-col md:flex-row gap-12 pb-10'>
+        <button onClick={() => { handleGoogle() }} className=" bg-green-500 text-center rounded-lg p-5 text-xl md:text-3xl font-bold">Google</button>
+        <Link href={'/auth/otp'} className=" bg-green-500 text-center rounded-lg p-5 text-xl md:text-3xl font-bold">OTP</Link>
       </div>
       {/* {user&&<button onClick={()=>{logOut()}} className=" bg-green-500 rounded-lg p-5 text-3xl font-bold">Logout {user.displayName}</button>} */}
     </main>

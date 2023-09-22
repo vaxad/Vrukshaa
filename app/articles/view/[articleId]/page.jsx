@@ -29,7 +29,7 @@ export default function Page({ params: { articleId } }) {
   }, [user, post])
 
   return post ? (
-    <div className=' px-24 py-12 '>
+    <div className=' px-6 md:px-12 lg:px-24 py-12 '>
       <AuthChecker />
       <div className={` flex relative flex-col bg-yellow-100 rounded-lg text-zinc-900 w-full p-8 gap-5`}>
         <div className=' flex flex-row justify-between items-center '>
@@ -47,7 +47,7 @@ export default function Page({ params: { articleId } }) {
           <div className=' flex flex-col w-full gap-2'>
 
             {/* description  */}
-            <p className=' w-full text-lg font-normal pb-5'>{post?.description}</p>
+            <p className=' w-full text-lg font-normal pb-5 break-words'>{post?.description}</p>
             <div className=' flex flex-row justify-between items-center '>
               <LikeSection likes={post.likes} itemId={articleId} type={"article"} size={50} />
               <div className=' flex flex-row gap-2 items-center justify-start'>

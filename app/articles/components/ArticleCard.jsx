@@ -28,7 +28,7 @@ export default function ArticleCard({ el }) {
         </div>
         <h2 className=' font-medium text-md '>{(new Date(el.createdAt)).toDateString()}</h2>
       </div>
-      <p>{desc.length > 1000 ? desc.slice(0, 1000) + '...' : desc}</p>
+      <p className=' break-words'>{desc.length > 1000 ? desc.slice(0, 1000) + '...' : desc}</p>
       <div className=' flex flex-row gap-2 items-center justify-start'>
         {el?.tags?.map((tag) => (
           <Tag key={tag} tag={tag} />

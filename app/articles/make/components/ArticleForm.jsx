@@ -39,16 +39,16 @@ export default function PostForm() {
                     <label>Tags</label>
                     <input required onChange={(e) => { handleChange(e) }} value={data.tags} id='tags' type='text' className=' w-full rounded-full text-black px-5 py-3' placeholder='pests, fertilizers'></input>
                 </div>
-                <button type='submit' className=' mt-5 w-11/12 py-12 rounded-lg text-zinc-950 cursor-pointer bg-yellow-500 hover:bg-yellow-300 flex justify-center items-center text-3xl transition-all font-bold'>
+                <button type='submit' className=' mt-5 w-11/12 py-6 md:py-12 rounded-lg text-zinc-950 cursor-pointer bg-yellow-500 hover:bg-yellow-300 flex justify-center items-center text-xl md:text-3xl transition-all font-bold'>
                     PUBLISH MY ARTICLE
                 </button>
                 <div className={`${!submit && '-translate-y-full'} transition-all w-full h-full flex justify-center items-center bg-yellow-300 fixed top-0 right-0`} style={{ transitionDuration: "500ms" }}>
                     <Jelly
                         size={80}
                         speed={0.9}
-                        color="white"
+                        color="black"
                     />
-                    <p className=' py-12 text-2xl font-medium'>{submitStatus.text}</p>
+                    <p className=' py-12 text-2xl font-medium text-zinc-900'>{submitStatus.text}</p>
                 </div>
             </form>
         </div>

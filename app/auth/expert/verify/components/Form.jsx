@@ -52,7 +52,7 @@ export default function Form() {
         <input required onChange={(e) => { handleChange(e) }} value={data.expertise} id='expertise' type='text' className=' w-full rounded-full text-black px-5 py-3'></input>
       </div>
       <div>
-        <div className=' flex flex-row gap-8'>
+        <div className=' flex flex-col md:flex-row gap-8'>
           <button type='submit' className=" bg-green-500 rounded-lg px-5 py-3 text-xl font-bold hover:scale-95 transition-all">Verify my details!</button>
 
           <button type='cancel' onClick={() => { handleCancel() }} className=" bg-red-500 rounded-lg px-5 py-3 text-xl font-bold hover:scale-95 transition-all">Cancel verification</button>

@@ -17,7 +17,11 @@ export default function Page() {
   const [otpSent, setotpSent] = useState(false)
   useEffect(() => {
     if (user) {
-      router.replace('/home')
+      if (user.userType === "None") {
+        router.replace('/auth/expert')
+      } else {
+        router.replace('/home')
+      }
     }
   }, [user])
 
@@ -61,6 +65,7 @@ export default function Page() {
       // ...
     }).catch((error) => {
       // User couldn't sign in (bad verification code?)
+      alert('authentication error')
       // ...
     });
   };
@@ -81,14 +86,14 @@ export default function Page() {
     }
   }
   return (
-    <main className=' flex flex-col justify-center items-center p-24 text-slate-50'>
-      <h1 className=" text-5xl text-center font-bold pt-24 pb-10">Sign in with otp</h1>
+    <main className=' flex flex-col justify-center items-center px-6 md:px-12 lg:px-24 py-24 text-slate-50'>
+      <h1 className=" text-2xl md:text-5xl text-center font-bold pt-24 pb-10">Sign in with otp</h1>
       <div className=' flex flex-col gap-12 pb-10'>
         <div className=' py-3 text-slate-50'>
           <label>{otpSent ? 'OTP' : 'Phone'}</label>
           <input type='Number' onChange={(e) => { setdata({ ...data, [otpSent ? "otp" : "phone"]: e.target.value }) }} value={otpSent ? data.otp : data.phone} className=' p-3 w-full rounded-xl text-black' placeholder={otpSent ? 'enter otp' : 'enter phone number'}></input>
         </div>
-        <button onClick={() => { handleClick() }} className=" bg-green-500 rounded-lg p-5 text-3xl font-bold">{otpSent ? 'Verify' : 'Submit'}</button>
+        <button onClick={() => { handleClick() }} className=" bg-green-500 rounded-lg p-5 text-xl md:text-3xl font-bold">{otpSent ? 'Verify' : 'Submit'}</button>
       </div>
       <div id='recaptcha-container'></div>
       {/* {user&&<button onClick={()=>{logOut()}} className=" bg-green-500 rounded-lg p-5 text-3xl font-bold">Logout {user.displayName}</button>} */}

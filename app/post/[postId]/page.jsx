@@ -30,7 +30,7 @@ export default function Page({ params: { postId } }) {
   }, [user, post])
 
   return post && (
-    <div className=' px-24 py-12 '>
+    <div className=' px-6 md:px-12 lg:px-24 py-12 '>
       <Loading loading={loading} />
       <AuthChecker />
       <div className={` flex relative flex-col  ${post?.reviews?.approved?.length !== 0 ? 'bg-green-300 text-zinc-900' : 'bg-slate-400 text-slate-100'}  rounded-lg  w-full p-8 gap-5`}>
@@ -41,8 +41,8 @@ export default function Page({ params: { postId } }) {
           </div>
           <h2 className=' font-medium text-md '>{(new Date(post?.createdAt)).toDateString()}</h2>
         </div>
-        <div className=' flex flex-row w-full gap-12'>
-          <div className=' w-1/3 flex flex-col gap-2'>
+        <div className=' flex flex-col md:flex-row w-full gap-12'>
+          <div className=' w-full md:w-1/3 flex flex-col gap-2'>
             <img alt='plant' className=' rounded-md' src={post.img}></img>
             <p id='description' className=' text-sm font-medium break-words'>{post?.description}</p>
             <LikeSection likes={post?.likes} itemId={post?._id} type="post" size={50} />
