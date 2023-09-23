@@ -8,10 +8,6 @@ import { getArticle } from '@/lib/article'
 import { UserAuth } from '@/lib/authContext'
 import Loading from '@/app/components/Loading'
 
-export const metadata = {
-  title: 'Article - Vrukshaa',
-  description: 'image analysis',
-}
 
 export default function Page({ params: { articleId } }) {
   const { user } = UserAuth()

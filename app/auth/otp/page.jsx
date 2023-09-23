@@ -5,10 +5,6 @@ import React, { useEffect, useState } from 'react'
 import { auth } from '../../firebase'
 import { useRouter } from 'next/navigation'
 
-export const metadata = {
-  title: 'Authentication',
-  description: 'image analysis',
-}
 export default function Page() {
 
   const { user, setUser } = UserAuth()
