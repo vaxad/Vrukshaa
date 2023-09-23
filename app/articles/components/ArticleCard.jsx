@@ -9,7 +9,7 @@ export default function ArticleCard({ el }) {
       {/* <div className=' bg-slate-100 rounded-tr-lg px-3 py-1 w-fit absolute top-0 right-0'>Verified</div> */}
       <div className=' flex flex-row justify-between items-center '>
         <div className=' flex flex-col gap-1 justify-start'>
-          <h1 className=' font-semibold text-xl '>{el.title}</h1>
+          <h1 className=' font-semibold text-xl break-words'>{el?.title?.length>65?el?.title?.slice(0,65)+"...":el?.title}</h1>
           {/* <p className=' font-normal text-md '>Related to rice</p> */}
           <div className=' flex flex-row gap-5 text-slate-600'>
             <div className=' flex flex-row gap-1 '>

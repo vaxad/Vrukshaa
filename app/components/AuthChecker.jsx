@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import AnimatedPlant from './AnimatedPlant'
 
 export default function AuthChecker() {
-  const { user, getMe, checkServer, token } = UserAuth()
+  const { user, getMe, checkServer, token,setToken } = UserAuth()
   const router = useRouter()
   const pathname = usePathname()
   const [error, seterror] = useState(false)
@@ -13,7 +13,7 @@ export default function AuthChecker() {
   useEffect(() => {
     goError()
     goHero()
-    goAuth()
+    // goAuth()
     goHome()
   }, [user])
 
@@ -42,8 +42,13 @@ export default function AuthChecker() {
   }
 
   const goHero = async () => {
-    if (user && (token===''||!token)) {
-      router.replace('/')
+    if (!user && (token===''||!token)) {
+      const tempToken = localStorage.getItem('token')
+      if(!tempToken||tempToken===''){
+        router.replace('/')
+        }else{
+          setToken(tempToken)
+        }
     }
   }
 

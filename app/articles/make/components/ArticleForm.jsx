@@ -3,11 +3,9 @@ import React, { useState } from 'react'
 import { Jelly } from '@uiball/loaders'
 import { useRouter } from 'next/navigation'
 import { makeArticle } from '@/lib/article'
-import { UserAuth } from '@/lib/authContext'
 
 export default function PostForm() {
-    const { token } = UserAuth()
-    const [data, setdata] = useState({ title: '', description: '', tags: '', token: token })
+    const [data, setdata] = useState({ title: '', description: '', tags: '' })
     const [submit, setSubmit] = useState(false)
     const [submitStatus, setsubmitStatus] = useState({ color: '', text: '' })
     const router = useRouter()

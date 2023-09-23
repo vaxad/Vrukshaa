@@ -6,27 +6,27 @@ import { likePost, unlikePost } from '@/lib/post'
 import React, { useState } from 'react'
 
 export default function LikeSection({ likes, type, itemId, size }) {
-  const { user, token } = UserAuth()
+  const { user } = UserAuth()
   const id = user?._id
   const [like, setlike] = useState(likes)
   const handleLike = async () => {
     if (like.includes(id)) {
       setlike(like.filter((item) => item != id))
       if (type === "post") {
-        await unlikePost({ token: token, postId: itemId })
+        await unlikePost({ postId: itemId })
       } else if (type === "comment") {
-        await unlikeComment({ token: token, commentId: itemId })
+        await unlikeComment({ commentId: itemId })
       } else if (type === "article") {
-        await unlikeArticle({ token: token, articleId: itemId })
+        await unlikeArticle({ articleId: itemId })
       }
     } else {
       setlike([...like, id])
       if (type === "post") {
-        await likePost({ token: token, postId: itemId })
+        await likePost({ postId: itemId })
       } else if (type === "comment") {
-        await likeComment({ token: token, commentId: itemId })
+        await likeComment({ commentId: itemId })
       } else if (type === "article") {
-        await likeArticle({ token: token, articleId: itemId })
+        await likeArticle({ articleId: itemId })
       }
     }
   }

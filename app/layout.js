@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Vrukshaa',
-  description: 'image analysis',
+  description: 'Discover plant health with our cutting-edge AI technology. Upload plant images and receive accurate disease identification and treatment recommendations. Take the first step towards a greener, healthier garden.',
 }
 
 export default function RootLayout({ children }) {

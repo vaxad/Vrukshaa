@@ -14,12 +14,12 @@ export const metadata = {
 }
 
 export default function Page({ params: { articleId } }) {
-  const { token, user } = UserAuth()
+  const { user } = UserAuth()
   const [loading, setloading] = useState(true)
   const [post, setpost] = useState(null)
   useEffect(() => {
     const getData = async () => {
-      const data = await getArticle({ token, articleId })
+      const data = await getArticle({ articleId })
       setpost(data)
     }
     if (post) {
@@ -34,7 +34,7 @@ export default function Page({ params: { articleId } }) {
       <div className={` flex relative flex-col bg-yellow-100 rounded-lg text-zinc-900 w-full p-8 gap-5`}>
         <div className=' flex flex-row justify-between items-center '>
           <div className=' flex flex-col gap-1 justify-start'>
-            <h1 className=' font-semibold text-xl '>{post?.title}</h1>
+            <h1 className=' font-semibold text-xl break-words'>{post?.title}</h1>
           </div>
           <h2 className=' font-medium text-md '>{(new Date(post?.createdAt)).toDateString()}</h2>
         </div>

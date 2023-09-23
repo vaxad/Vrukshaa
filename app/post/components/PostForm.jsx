@@ -2,12 +2,10 @@
 import axios from 'axios'
 import React, { useRef, useState } from 'react'
 import { Jelly } from '@uiball/loaders'
-import { UserAuth } from '@/lib/authContext'
 import { useRouter } from 'next/navigation'
 import { makePosts } from '@/lib/post'
 
 export default function PostForm() {
-    const { token } = UserAuth()
     const [img, setimg] = useState(null)
     const [imgFile, setImgFile] = useState('')
     const imageUpload = useRef(null)
@@ -35,7 +33,7 @@ export default function PostForm() {
             //.log(response.statusText);
             if (response.statusText === "OK") {
                 setsubmitStatus({ text: 'Image uploaded successfully' })
-                const resData = await makePosts({ token: token, img: response.data.url, description: desc })
+                const resData = await makePosts({ img: response.data.url, description: desc })
                 //.log(resData)
                 setsubmitStatus({ text: 'Image analysis started' })
                 router.push(`/post/${resData.post._id}`)

@@ -1,21 +1,19 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import CommentCard from './CommentCard'
-import { UserAuth } from '@/lib/authContext'
 import { getComments, postComment } from '@/lib/post'
 import { articleComment, getCommentsForArticle } from '@/lib/article'
 
 export default function CommentSection({ postId, articleId }) {
   const [comments, setcomments] = useState([])
-  const { user, token } = UserAuth()
   useEffect(() => {
     const getPostComments = async () => {
-      const data = await getComments({ postId, token })
+      const data = await getComments({ postId })
       //.log(data)
       setcomments(data)
     }
     const getArticleComments = async () => {
-      const data = await getCommentsForArticle({ articleId, token })
+      const data = await getCommentsForArticle({ articleId })
       //.log(data)
       setcomments(data)
     }
@@ -30,15 +28,17 @@ export default function CommentSection({ postId, articleId }) {
     e.preventDefault()
     const message = document.getElementById('commentBox').textContent
     let newComment
+    if(message.replace(/\s+/, "") !==''){
     if (postId) {
-      const resp = await postComment({ token, postId, message })
+      const resp = await postComment({ postId, message })
       newComment = resp
     } else {
-      const resp = await articleComment({ token, articleId, message })
+      const resp = await articleComment({ articleId, message })
       newComment = resp
     }
     document.getElementById('commentBox').textContent = ""
     setcomments([...comments, newComment])
+  }
   }
   return (
     <div className=' w-full flex flex-col gap-3 justify-center items-center bg-slate-600 rounded-lg p-8'>

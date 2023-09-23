@@ -1,22 +1,13 @@
 import React from 'react'
-import AuthChecker from '../components/AuthChecker'
-import PostForm from './components/PostForm'
+import MakePost from './components/MakePost'
 
 export const metadata = {
   title: 'Post - Vrukshaa',
-  description: 'image analysis',
+  description: 'Discover plant health with our cutting-edge AI technology. Upload plant images and receive accurate disease identification and treatment recommendations. Take the first step towards a greener, healthier garden.',
 }
 export default function Page() {
 
   return (
-    <div className=' px-6 md:px-24 py-12 '>
-      <AuthChecker />
-      <div className=' flex flex-col justify-center items-center min-w-full'>
-        <h1 className=' text-5xl font-bold'></h1>
-        <div className=' py-5 w-full'>
-          <PostForm />
-        </div>
-      </div>
-    </div>
+    <MakePost/>
   )
 }
