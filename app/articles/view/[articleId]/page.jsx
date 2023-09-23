@@ -43,7 +43,7 @@ export default function Page({ params: { articleId } }) {
           <div className=' flex flex-col w-full gap-2'>
 
             {/* description  */}
-            <p className=' w-full text-lg font-normal pb-5 break-words'>{post?.description}</p>
+            <p className=' w-full text-lg font-normal pb-5 break-words flex-wrap'>{post?.description}</p>
             <div className=' flex flex-row justify-between items-center '>
               <LikeSection likes={post.likes} itemId={articleId} type={"article"} size={50} />
               <div className=' flex flex-row gap-2 items-center justify-start'>

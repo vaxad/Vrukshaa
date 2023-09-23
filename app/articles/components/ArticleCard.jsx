@@ -5,10 +5,10 @@ import Tag from './Tag'
 export default function ArticleCard({ el }) {
   const desc = el.description
   return (
-    <Link href={`/articles/view/${el._id}`} className={` flex cursor-default  flex-col w-full  bg-yellow-100 rounded-lg gap-4 border-2 border-transparent p-5 transition-all text-zinc-900 hover:border-yellow-600`}>
+    <Link href={`/articles/view/${el._id}`} className={` flex cursor-default  flex-col w-full flex-wrap  bg-yellow-100 rounded-lg gap-4 border-2 border-transparent p-5 transition-all text-zinc-900 hover:border-yellow-600 overflow-x-hidden`}>
       {/* <div className=' bg-slate-100 rounded-tr-lg px-3 py-1 w-fit absolute top-0 right-0'>Verified</div> */}
-      <div className=' flex flex-row justify-between items-center '>
-        <div className=' flex flex-col gap-1 justify-start'>
+      <div className=' flex flex-row justify-between items-center w-full flex-wrap  overflow-x-hidden'>
+        <div className=' flex flex-col gap-1 justify-start max-w-full flex-wrap'>
           <h1 className=' font-semibold text-xl break-words'>{el?.title?.length>65?el?.title?.slice(0,65)+"...":el?.title}</h1>
           {/* <p className=' font-normal text-md '>Related to rice</p> */}
           <div className=' flex flex-row gap-5 text-slate-600'>
@@ -28,8 +28,8 @@ export default function ArticleCard({ el }) {
         </div>
         <h2 className=' font-medium text-md '>{(new Date(el.createdAt)).toDateString()}</h2>
       </div>
-      <p className=' break-words'>{desc.length > 1000 ? desc.slice(0, 1000) + '...' : desc}</p>
-      <div className=' flex flex-row gap-2 items-center justify-start'>
+      <p className=' break-words flex-wrap w-full'>{desc.length > 1000 ? desc.slice(0, 1000) + '...' : desc}</p>
+      <div className=' flex flex-row gap-2 items-center justify-start overflow-x-hidden'>
         {el?.tags?.map((tag) => (
           <Tag key={tag} tag={tag} />
         ))}

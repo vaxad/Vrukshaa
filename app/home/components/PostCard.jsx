@@ -7,7 +7,7 @@ export default function PostCard({ el }) {
     <Link href={`/post/${el._id}`} className={` flex cursor-default relative flex-col w-full  ${verified ? 'bg-green-300 hover:border-green-600' : 'bg-slate-300 hover:border-slate-600'} rounded-lg gap-4 border-2 border-transparent p-5 transition-all text-zinc-900 `}>
       <div className=' bg-slate-100 rounded-tr-lg px-3 py-1 w-fit absolute top-0 right-0'>{verified ? 'Verified' : 'Unverified'}</div>
       <div className=' flex flex-row justify-between items-center '>
-        <div className=' flex flex-col gap-1 justify-start'>
+        <div className=' flex flex-col gap-1 justify-start overflow-x-hidden'>
           <h1 className=' font-semibold text-xl '>{el.analysis[0]?.disease}</h1>
           {/* <p className=' font-normal text-md '>Related to rice</p> */}
           <div className=' flex flex-row gap-5 text-slate-600'>
