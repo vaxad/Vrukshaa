@@ -8,21 +8,6 @@ import { getPost } from '@/lib/post'
 import { UserAuth } from '@/lib/authContext'
 import Loading from '@/app/components/Loading'
 
-export function generateMetadata({ params: { postId } }) {
-  const [data, setdata] = useState(null)
-  useEffect(() => {
-    const getData = async () => {
-      const resp = await getPost({ postId })
-      setdata(resp)
-    }
-    getData()
-  }, [user, post])
-  return {
-    title: data?data.analysis[0]?.disease:'Post - Vruksha',
-    description: data?data.description:'Post - Vruksha',
-  
-  }
-}
 
 export default function Page({ params: { postId } }) {
   const { user } = UserAuth()
