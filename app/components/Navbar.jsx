@@ -41,7 +41,7 @@ export default function Navbar() {
 <path d="M 5 9 L 5 11 L 45 11 L 45 9 L 5 9 z M 5 24 L 5 26 L 45 26 L 45 24 L 5 24 z M 5 39 L 5 41 L 45 41 L 45 39 L 5 39 z"></path>
 </svg>
       </button>
-    <div className={` w-full fixed top-0 -right-full z-3  0 py-4 px-8 flex md:hidden ${nav&&' -translate-x-full'} transition-all justify-center flex-col items-center gap-16 h-screen bg-slate-100`} style={{transitionDelay:"100ms", transitionDuration:"500ms"}}>
+    <div className={` w-full fixed top-0 -right-full z-30  0 py-4 px-8 flex md:hidden ${nav&&' -translate-x-full'} transition-all justify-center flex-col items-center gap-16 h-screen bg-slate-100`} style={{transitionDelay:"100ms", transitionDuration:"500ms"}}>
       
       <div className=' w-full flex flex-col gap-6 justify-center items-center'>
         <Link onClick={()=>{setnav(!nav)}} href={'/home'} className={` font-normal rounded-lg py-1 px-2 ${path.includes('/home')&&'bg-green-200 '} text-zinc-900  text-md hover:bg-green-200 hover:text-zinc-900 transition-all`}>Home</Link>
