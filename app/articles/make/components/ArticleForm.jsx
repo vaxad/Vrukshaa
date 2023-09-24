@@ -11,26 +11,44 @@ export default function PostForm() {
     const router = useRouter()
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setsubmitStatus({ text: 'Article is being uploaded' })
-        setSubmit(true)
-        const res = await makeArticle(data)
-        //.log(res)
-        router.push(`/articles/view/${res.article._id}`)
+        if (data.title.length < 5) {
+            alert('Title too short, it should be minimum 5 characters long')
+        } else if (data.description.length < 2000) {
+            alert('Description too short, it should be minimum 2000 characters long')
+        } else {
+            setsubmitStatus({ text: 'Article is being uploaded' })
+            setSubmit(true)
+            const res = await makeArticle(data)
+            //.log(res)
+            router.push(`/articles/view/${res.article._id}?title=${res.article.title}`)
+        }
     }
 
     const handleChange = (e) => {
-        setdata({ ...data, [e.target.id]: e.target.value })
+        if ((e.target.id === "title" && e.target.value.length <= 150)) {
+            setdata({ ...data, ["title"]: e.target.value })
+        } else if ((e.target.id === "description" && e.target.value.length <= 6000)) {
+            setdata({ ...data, ["description"]: e.target.value })
+        } else if (e.target.id === "tags") {
+            setdata({ ...data, ["tags"]: e.target.value })
+        }
     }
 
     return (
         <div>
             <form onSubmit={(e) => { handleSubmit(e) }} className=' flex flex-col justify-center items-center w-full gap-8'>
                 <div className='flex flex-col gap-2 w-11/12'>
-                    <label>Title<sup>*</sup></label>
+                    <div className=' flex flex-row w-full justify-between items-center'>
+                        <label>Title<sup>*</sup></label>
+                        <label className={`${data.title.length > 140 ? ' text-red-500' : ''}`}>{data.title.length}/150</label>
+                    </div>
                     <input id="title" required onChange={(e) => { handleChange(e) }} value={data.title} type='text' className=' w-full rounded-full text-black px-5 py-3'></input>
                 </div>
                 <div className=' w-11/12 flex-col flex justify-center items-center'>
-                    <label className=' w-full py-2'>Description<sup>*</sup></label>
+                    <div className=' flex flex-row w-full justify-between items-center'>
+                        <label>Description<sup>*</sup></label>
+                        <label className={`${data.description.length > 5900 ? ' text-red-500' : ''}`}>{data.description.length}/6000</label>
+                    </div>
                     <textarea id='description' required onChange={(e) => { handleChange(e) }} value={data.description} defaultValue={''} rows={30} className='w-full text-black p-3 focus:ring-0 placeholder:text-gray-500' placeholder='i have been facing this issue since last falll. even tho i sprayed metamorphic pesticides on few of the crops...' />
                 </div>
                 <div className='flex flex-col gap-2 w-11/12'>

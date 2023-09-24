@@ -3,7 +3,7 @@ import AuthChecker from '../../components/AuthChecker'
 import ArticleForm from './components/ArticleForm'
 
 export const metadata = {
-  title: 'Post - Vrukshaa',
+  title: 'Publish Your Own Article - Vrukshaa',
   description: 'image analysis',
 }
 export default function page() {

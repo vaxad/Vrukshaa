@@ -36,7 +36,7 @@ export default function PostForm() {
                 const resData = await makePosts({ img: response.data.url, description: desc })
                 //.log(resData)
                 setsubmitStatus({ text: 'Image analysis started' })
-                router.push(`/post/${resData.post._id}`)
+                router.push(`/post/${resData.post._id}?title=${resData.post.analysis[0]?.disease}`)
 
             } else {
                 setsubmitStatus({ text: 'Image could not be uploaded' })
@@ -67,8 +67,15 @@ export default function PostForm() {
                 </div>
                 <input id='imageUpload' ref={imageUpload} className=' hidden' onChange={(e) => { validateFileType(e) }} type='file'></input>
                 <div className=' my-10 w-11/12 flex-col flex justify-center items-center'>
-                    <label className=' w-full py-2'>Description<sup>{' (optional)'}</sup></label>
-                    <textarea value={desc} onChange={(e) => setdesc(e.target.value)} rows={20} className='w-full text-black p-3 focus:ring-0 placeholder:text-gray-500' placeholder='i have been facing this issue since last falll. even tho i sprayed metamorphic pesticides on few of the crops...' />
+                    <div className=' flex flex-row w-full justify-between items-center'>
+                        <label className=' w-full py-2'>Description<sup>{' (optional)'}</sup></label>
+                        <label className={`${desc.length > 1900 ? ' text-red-500' : ''}`}>{desc.length}/2000</label>
+                    </div>
+                    <textarea value={desc} onChange={(e) => {
+                        if (e.target.value.length < 2000) {
+                            setdesc(e.target.value)
+                        }
+                    }} rows={20} className='w-full text-black p-3 focus:ring-0 placeholder:text-gray-500' placeholder='i have been facing this issue since last falll. even tho i sprayed metamorphic pesticides on few of the crops...' />
                 </div>
                 {img && <button onClick={(e) => { handleSubmit(e) }} className=' w-11/12 py-6 md:py-12 rounded-lg cursor-pointer bg-green-500 hover:bg-green-300 flex justify-center items-center text-xl md:text-3xl transition-all font-bold'>
                     SEND FOR ANALYSIS

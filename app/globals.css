@@ -5,8 +5,14 @@
 :root {
   color: aliceblue;
   background-image: url('/home-bg.jpg');
-    background-size: cover;
-    min-height: 100vh;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+#posts {
+  display: grid;
+  grid-template-rows: repeat(auto-fill, minmax(25vw, 1fr));
+  gap: 16px;
 }
 
 #plant {
@@ -16,16 +22,19 @@
   width: 100%;
   background: transparent
 }
+
 #plant {
   perspective: 100px;
   transform: scale(50%);
 }
+
 .info {
   margin: 20px;
   padding: 0px 20px;
   background-color: #ccc;
   display: inline-block;
 }
+
 .trunk,
 .trunk div {
   background: #0bd354;
@@ -41,6 +50,7 @@
   transform-origin: 1.25vmin 1.25vmin;
   animation-timing-function: ease-in-out;
 }
+
 .trunk.trunk,
 .trunk div.trunk {
   bottom: 0;
@@ -48,112 +58,136 @@
   animation-name: rot-root;
   animation-duration: 2.46428s;
 }
-.trunk >div,
-.trunk div >div {
+
+.trunk>div,
+.trunk div>div {
   top: 0;
   left: 25vmin;
   animation-duration: calc((inherit / 2));
 }
-.trunk >div:nth-child(2),
-.trunk div >div:nth-child(2) {
+
+.trunk>div:nth-child(2),
+.trunk div>div:nth-child(2) {
   animation-name: rot-inv;
   animation-duration: 1.777351213486541s;
 }
+
 @-moz-keyframes rot {
   from {
     transform: rotate(15deg) scale(0.72);
   }
+
   to {
     transform: rotate(45deg) scale(0.72);
   }
 }
+
 @-webkit-keyframes rot {
   from {
     transform: rotate(15deg) scale(0.72);
   }
+
   to {
     transform: rotate(45deg) scale(0.72);
   }
 }
+
 @-o-keyframes rot {
   from {
     transform: rotate(15deg) scale(0.72);
   }
+
   to {
     transform: rotate(45deg) scale(0.72);
   }
 }
+
 @keyframes rot {
   from {
     transform: rotate(15deg) scale(0.72);
   }
+
   to {
     transform: rotate(45deg) scale(0.72);
   }
 }
+
 @-moz-keyframes rot-inv {
   from {
     transform: rotate(-45deg) scale(0.72);
   }
+
   to {
     transform: rotate(-15deg) scale(0.72);
   }
 }
+
 @-webkit-keyframes rot-inv {
   from {
     transform: rotate(-45deg) scale(0.72);
   }
+
   to {
     transform: rotate(-15deg) scale(0.72);
   }
 }
+
 @-o-keyframes rot-inv {
   from {
     transform: rotate(-45deg) scale(0.72);
   }
+
   to {
     transform: rotate(-15deg) scale(0.72);
   }
 }
+
 @keyframes rot-inv {
   from {
     transform: rotate(-45deg) scale(0.72);
   }
+
   to {
     transform: rotate(-15deg) scale(0.72);
   }
 }
+
 @-moz-keyframes rot-root {
   from {
     transform: rotate(-95deg);
   }
+
   to {
     transform: rotate(-85deg);
   }
 }
+
 @-webkit-keyframes rot-root {
   from {
     transform: rotate(-95deg);
   }
+
   to {
     transform: rotate(-85deg);
   }
 }
+
 @-o-keyframes rot-root {
   from {
     transform: rotate(-95deg);
   }
+
   to {
     transform: rotate(-85deg);
   }
 }
+
 @keyframes rot-root {
   from {
     transform: rotate(-95deg);
   }
+
   to {
     transform: rotate(-85deg);
   }
 }
-
-
