@@ -36,7 +36,7 @@ export default function PostForm() {
                 const resData = await makePosts({ img: response.data.url, description: desc })
                 //.log(resData)
                 setsubmitStatus({ text: 'Image analysis started' })
-                router.push(`/post/${resData.post._id}?title=${resData.post.analysis[0]?.disease}`)
+                router.push(`/post/${resData._id}?title=${resData.analysis[0]?.disease}`)
 
             } else {
                 setsubmitStatus({ text: 'Image could not be uploaded' })

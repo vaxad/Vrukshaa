@@ -37,7 +37,7 @@ export default function ProfilePage() {
       <AuthChecker />
       {user?.userType === 'Expert' && articles.length !== 0 && posts.length != 0 && <button onClick={() => { setcontent(!content) }} className={` px-4 py-2 rounded-full text-xl font-semibold text-zinc-900 bg-yellow-400`}>See {content ? 'articles' : 'posts'}</button>}
       {/* <h1 className=' text-3xl font-bold mb-5'>Explore posts from other farmers!</h1> */}
-      {content === -1 ? <h1 className=' text-3xl font-bold'>No posts available to display</h1> :
+      {content === -1 ? <h1 className=' md:text-3xl font-bold text-xl text-center py-8'>No posts available to display</h1> :
         content ? <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-flow-row-dense gap-5 w-full'>
           {posts.map(el => (
             <PostCard key={el._id} el={el} />
