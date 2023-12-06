@@ -1,5 +1,5 @@
 11
-![image](https://github.com/vaxad/vrukshaa/assets/126230095/081418e5-ee64-4f6d-bcfb-cf839a807ab6)
+![image](https://res.cloudinary.com/db670bhmc/image/upload/v1701884189/288477414-081418e5-ee64-4f6d-bcfb-cf839a807ab6_zgup9y.png)
 
 ---
 
